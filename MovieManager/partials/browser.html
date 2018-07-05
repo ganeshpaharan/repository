@@ -1,0 +1,57 @@
+<section class="browse-movies">
+    
+  <div class="search-content">
+    <div class="tooltip">
+      <a href="index.html" style="color:#EEE8D5;font-size:large;">
+          <span class="glyphicon glyphicon-home"></span>
+      </a>
+      <span class="tooltiptext" style="color: white">Home</span>
+    </div>
+    
+    <h1 style="color:#EEE8D5;text-align:center;">Search Movies</h1>
+    <form class="form-wrapper">
+        <input type="text" id="search" ng-model="searchString" placeholder="Search for..." ng-model="fromSearchBox">
+        <select id="select" name="rating" ng-model="selectedrating" ng-options="rating for rating in imdbRating">
+            <option label="Rating" disabled selected hidden></option>
+        </select>
+        <select id="select" ng-model="selectedgenre" ng-options="genre for genre in genre">
+            <option label = "Genre" disabled selected hidden></option>
+        </select>
+        <select id="select" ng-model="selectedactor" ng-options="actor for actor in actor">
+            <option label = "Actor" disabled selected hidden></option>
+        </select>
+        <select id="select" ng-model="selecteddirector" ng-options="director for director in director">
+            <option label = "Director" disabled selected hidden></option>
+        </select>
+        <div class = "reset">
+          <button type="button" class="btn btn-large button-dropdown" data-translate="Rest_Filters" ng-click="clearFilter()">Rest</button>
+        </div>
+    </form>
+  </div>
+        
+  <section class="main-content">
+      <div class="image-wrapper" dir-paginate="movie in movies | filter:searchString | filter:ratingFilter(selectedrating) | filter: selecteddirector | filter: selectedactor| filter: selectedgenre | itemsPerPage: 20">
+        <a ng-href="#/details/{{movies.indexOf(movie)}}">
+          <div class="hovereffect">
+            <img class="poster-display" ng-src="{{movie.Poster}}" ng-href="#/details/{{movies.indexOf(movie)}}">
+            <div class="overlay">
+              <img src="images/star.png">
+              <P>{{movie.imdbRating}}/10</P>
+              <P>{{movie.Genre}}</P>
+            </div>
+          </div>
+          <div class="info">
+            <div class="poster-detail">
+                <div class="poster-detail-tooltip">{{movie.Title}}, {{movie.Released}}<span class="poster-detail-tooltiptext">{{movie.Title}}</span></div>
+            </div>
+          </div>
+        </a>
+    </div>
+  </section>
+        
+</section>
+<section class="pagination-content">  
+  <div class="pagination">
+      <dir-pagination-controls boundary-links="true" template-url="partials/dirPagination.tpl.html"></dir-pagination-controls>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+<section class="moviepage">
+  <div class="search">
+    <h1>Movie Directory</h1>
+      <a ng-href="#/browser">Browse Movies</a>
+    <label>A quick seacrh </label>
+
+    <label class="formgroup">
+         <input ng-model="query" placeholder="Search for movies" autofocus>&nbsp;by:
+      <select ng-model="movieOrder">
+        <option value="Title">Title</option>
+        <option value="imdbRating">IMDB Rating</option>
+      </select>
+    </label>
+
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" checked>
+      ascending
+     </label>
+    <label class="formgroup">
+      <input type="radio" ng-model="direction" name="direction" value="reverse">
+      descending
+    </label>
+   
+  </div>
+  <ul class="movielist" ng-show="query">
+    <li ng-animate="'animate'" class="movie cf" ng-repeat="item in movies | filter: query | orderBy: movieOrder:direction">
+      <a href="#/details/{{movies.indexOf(item)}}">
+        <img ng-src="{{item.Poster}}" alt="Photo{{item.name}}">
+        <div class="info">
+          <h4>{{item.Title}}</h4>
+          <h3>{{item.imdbRating}} &nbsp; {{item.Released}}</h3>
+        </div>
+      </a>
+    </li>
+  </ul>  
+<section class="main-content">
+  <div class="image-wrapper" ng-repeat="movie in movies+list | orderBy: 'imdbRating' | limitTo: 10">
+      <a ng-href="#/details/{{movies_list.indexOf(movie)}}">
+       <figure>
+          <img class="poster-display" ng-src="{{movie.Poster}}" ng-href="#/details/{{movies_list.indexOf(movie)}}">
+          <figcaption class="posterhovertext">
+              <span>
+                  <h4 class="rating">{{movie.imdbRating}}/10</h4>
+                  <h4>{{movie.Genre}}</h4>
+              </span>
+              
+          </figcaption> 
+        </figure>
+          
+        <div class="info">
+          <div class="poster-detail">
+              <div class="poster-detail-tooltip">{{movie.Title}},{{movie.Released}}<span class="poster-detail-tooltiptext">{{movie.Title}}</span></div>
+          </div>
+        </div>
+      </a>
+  </div>       
+</section>
+
+</section>

@@ -1,0 +1,46 @@
+<section class="movieinfo">
+  <div class="movie cf" ng-model="movies">
+    <div class="tooltip">
+      <a href="index.html" style="font-size:large;">
+        <span class="glyphicon glyphicon-home"></span>
+      </a>
+      <span class="tooltiptext">Home</span>
+    </div>
+    <div class="tooltip" style="float:right; font-size:large">
+      <a href="#/browser">
+        <span class="glyphicon glyphicon-search"></span>
+      </a>
+      <span class="tooltiptext">Browse</span>
+    </div>
+    </br></br>
+    <h1>{{movies[whichItem].Title}}</h1>
+    <div class="info">
+      <img ng-src="{{movies[whichItem].Poster}}" alt="Photo of {{movies[whichItem].Title}}">
+      <div class="bio"><info Plot:>{{movies[whichItem].Plot}}<br>
+          <information> Year      :</information> {{movies[whichItem].Year}}<br>
+          <information> Genre     :</information> {{movies[whichItem].Genre}}<br>
+          <information> Director  :</information> {{movies[whichItem].Director}}<br>
+          <information> Actors    :</information> {{movies[whichItem].Actors}}<br>
+          <information> Awards    :</information> {{movies[whichItem].Awards}}<br>
+          <information> IMDBRating:</information> {{movies[whichItem].imdbRating}}<br>
+          <information> Country   :</information> {{movies[whichItem].Country}}<br>
+          <information> Runtime   :</information> {{movies[whichItem].Runtime}}<br>
+     </div>    
+    </div>
+
+    <div class = "trailer" style="float:left;">
+      <information>Trailer:</information><br>
+      <iframe width="560" height="315" ng-src="https://www.youtube.com/embed/4ZHwu0uut3k" frameborder = "0" allowfullscreen></iframe>
+    </div>
+    <a href="#/details/{{prevItem}}">
+      <div class="tooltip" style="max-width: 300px;border-radius: 20px;float:left;padding:125px 20px;"><img ng-src="{{movies[prevItem].Poster}}">
+    </a>
+        <span class="tooltiptext" style="color: brown">Previous Movie ({{movies[prevItem].Title}})</span>
+      </div>
+    
+    <a href="#/details/{{nextItem}}">
+      <div class="tooltip" style="max-width: 300px;border-radius: 20px;float:right;padding:125px 10px;"><img ng-src="{{movies[nextItem].Poster}}">
+    </a>
+        <span class="tooltiptext" style="color: brown">Next Movie ({{movies[nextItem].Title}})</span>
+    </div>
+  </section>
